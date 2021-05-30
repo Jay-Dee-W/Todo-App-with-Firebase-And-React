@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
 import {useDispatch } from 'react-redux';
-import {addTodo } from '../redux/actions/actions'
-import { databaseRef } from '../components/firebase-config'
+import {addDBTodo } from '../redux/actions/actions'
+
 
 
 export default function AddToDo() {
@@ -11,12 +11,7 @@ export default function AddToDo() {
     let dispatch = useDispatch()
 
     function addTodoData(todoName) {
-        dispatch( addTodo(todoName) )
-        const newTodo = {
-            content: todoName,
-            completed: false
-        }
-        databaseRef.collection('todos').doc().set(newTodo)
+        dispatch( addDBTodo(todoName) )
         setTodoName('')
     }
     return (

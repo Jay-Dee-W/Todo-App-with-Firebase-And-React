@@ -1,4 +1,4 @@
-import { ADD_TODO, FILTER_TODO, GET_DB_TODOS, TOGGLE_TODO } from '../actions/action-types'
+import { ADD_TODO, FILTER_TODO, GET_TODOS, TOGGLE_TODO } from '../actions/action-types'
 
 let initialState = {
     todos: [],
@@ -11,14 +11,15 @@ export default function todoReducer(state = initialState, action) {
 
     switch (action.type) {
         case ADD_TODO:
-            todosCopy.push({ content: action.payload, completed: false })
+            console.log(action.payload)
+            todosCopy.push({...action.payload })
             return { ...state, todos: todosCopy }
         case TOGGLE_TODO:
             todosCopy[action.payload].completed = !todosCopy[action.payload].completed
             return { ...state, todos: todosCopy }
         case FILTER_TODO:
             return { ...state, filter: action.payload }
-        case GET_DB_TODOS:
+        case GET_TODOS:
             todosCopy.push({ ...action.payload })
             return { ...state, todos: todosCopy }
         default:

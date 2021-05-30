@@ -2,8 +2,8 @@
 import { useSelector } from "react-redux";
 import ToDoItem from "./ToDoItem";
 import { useDispatch } from 'react-redux';
-import { toggleTodo } from '../redux/actions/actions'
-import { databaseRef } from '../components/firebase-config'
+import { toggleDBTodo } from '../redux/actions/actions'
+
 
 export default function ToDoList() {
     let dispatch = useDispatch()
@@ -16,17 +16,7 @@ export default function ToDoList() {
             todos
 
     const handleCheck = (taskID) => {
-        let i = 0
-        dispatch(toggleTodo(taskID))
-        databaseRef.collection('todos').get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    if (i === taskID) {
-                        databaseRef.collection('todos').doc(doc.id).update({ completed: true })
-                    }
-                    i++
-                })
-            })
+      dispatch(toggleDBTodo(taskID))
     }
 
     return (

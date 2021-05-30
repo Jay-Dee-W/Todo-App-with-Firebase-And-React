@@ -3,7 +3,7 @@ import AddToDo from "./AddToDo";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getDBTodos, filterTodo } from '../redux/actions/actions'
-import { databaseRef } from '../components/firebase-config'
+
 
 export default function Main() {
     let dispatch = useDispatch()
@@ -17,13 +17,7 @@ export default function Main() {
 
 
     useEffect(() => {
-        databaseRef.collection('todos').get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    let todo = doc.data()
-                    dispatch(getDBTodos(todo))
-                })
-            })
+        dispatch(getDBTodos())
         // eslint-disable-next-line 
     }, [])
 
