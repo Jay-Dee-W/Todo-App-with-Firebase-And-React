@@ -24,7 +24,7 @@ export default function Main() {
     return (
 
         <div className="container">
-            <h2>Get it done! </h2>
+            <h2> Try to Get it done! </h2>
             <AddToDo />
             <ToDoList />
             <div className="filter-container">
